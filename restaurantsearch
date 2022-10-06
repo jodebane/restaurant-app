@@ -1,0 +1,20 @@
+import requests
+import json
+import sys
+import urllib
+
+locationvar =input("Enter Location ")
+categoryvar =input("Enter Cuisine ")
+
+api_key=''
+headers = {'Authorization': 'Bearer %s' % api_key}
+params = {'location':locationvar, 'categories':categoryvar}
+
+url='https://api.yelp.com/v3/businesses/search'
+
+req=requests.get(url, params=params, headers=headers)
+
+
+newvar = json.loads(req.text)
+
+print(newvar['total'])

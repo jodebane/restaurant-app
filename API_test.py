@@ -10,22 +10,29 @@ import urllib
 ##root = tkinter.Tk()
 ##root.title("Tkinterpractice")
 ##root.geometry("600x400")
-locationvar = [""]
-categoryvar=[""]
-newvar = [""]
-totalvar =[""]
+
 ###API call
+
 def API_call():
 
-    global locationvar
-    global categoryvar
-    global newvar
-    global totalvar
+    ###reads previous input file
+
+    with open('inputfile.txt', 'r') as newfile:
+        inputvar1 = newfile.readlines()
+
+        inputvar1split = (inputvar1[0].split(','))
+        locvar1 = (inputvar1split[0])
+        catvar1 = (inputvar1split[1])
+
+    locationvar = locvar1
+    categoryvar = catvar1
+    
+
 
     ##API call asking for the location and category of restaurants
 
-    locationvar =input("Enter Location ")
-    categoryvar =input("Enter Cuisine ")
+    ###locationvar =input("Enter Location ")
+    ##categoryvar =input("Enter Cuisine ")
     ###API key, headers, params
     api_key='T5r046Ko4ZGfX41i6KSz6YJglwp4UriL44HumY_8KATjldfs-VGDls5OSB4hOUNVv-t1H7Ks8P5xY0RbzZzeVb5kCFbyjscNn_Fb-JO1y-0N0sStkiPquAAMTlA9Y3Yx'
     headers = {'Authorization': 'Bearer %s' % api_key}
@@ -48,7 +55,6 @@ def API_call():
     f.write(str(categoryvar)+ ", ",)
     f.write(str(totalvar)+ ", ",)
     f.close()
-
 
     
    
@@ -84,6 +90,10 @@ def API_totalbylocation():
     f.close()
 
     return totalvar
+
+
+
+
 
 
 
